@@ -9,7 +9,7 @@
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/index.js",
     "typecheck": "tsc",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "jest"
   },
   "dependencies": {
     "@remix-run/css-bundle": "^2.5.0",
@@ -43,10 +43,6 @@
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.1.6"
-  },
-  "resolutions": {
-    "string-width": "4.2.3",
-    "wrap-ansi": "6.0.0"
   },
   "engines": {
     "node": ">=18.0.0"
