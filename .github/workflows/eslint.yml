@@ -29,11 +29,27 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Fetch Rust Toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Install wasm-pack
+        uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: wasm-pack
+
+      - name: Install project
+        run: yarn install
 
       - name: Install ESLint
         run: |
-          npm install eslint@8.38.0
-          npm install @microsoft/eslint-formatter-sarif@2.1.7
+          npm install eslint@latest
+          npm install @microsoft/eslint-formatter-sarif@latest
 
       - name: Run ESLint
         run: npx eslint 

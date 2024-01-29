@@ -1,0 +1,3 @@
+[submodule "tt-wasm"]
+	path = tt-wasm
+	url = https://github.com/Levalicious/tt-wasm

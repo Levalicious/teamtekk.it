@@ -1,14 +1,17 @@
 {
   "name": "teamtekk-it",
+  "version": "0.0.0",
   "private": true,
   "sideEffects": false,
   "type": "module",
   "scripts": {
+    "preinstall": "cd tt-wasm && wasm-pack build --target nodejs && cd ..",
     "build": "remix build",
     "dev": "remix dev --manual",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/index.js",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@remix-run/css-bundle": "^2.5.0",
@@ -17,9 +20,13 @@
     "@remix-run/serve": "^2.5.1",
     "isbot": "^4.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "remix-auth": "^3.6.0",
+    "remix-auth-form": "^1.4.0",
+    "tt-wasm": "./tt-wasm/pkg"
   },
   "devDependencies": {
+    "@playwright/test": "^1.41.1",
     "@remix-run/dev": "^2.5.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
