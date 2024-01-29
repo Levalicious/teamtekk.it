@@ -30,6 +30,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Fetch Rust Toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Install wasm-pack
+        uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: wasm-pack
+
       - name: Install project
         run: yarn install
 
