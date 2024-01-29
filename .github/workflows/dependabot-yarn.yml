@@ -37,6 +37,17 @@ jobs:
           fetch-depth: 2
           submodules: true
 
+      - name: Fetch Rust Toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Install wasm-pack
+        uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: wasm-pack
+
       - run: git lfs pull --include .yarn/
 
       - name: Setup node
