@@ -19,7 +19,14 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-            node-version: ${{ matrix.node-version }}
-            cache: 'yarn'
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: wasm-pack
       - run: yarn install
       - run: yarn test
