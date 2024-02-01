@@ -27,7 +27,7 @@ jobs:
       YARN_ENABLE_IMMUTABLE_INSTALLS: false
 
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4
         with:
           # Using a Personal Access Token here is required to trigger workflows on our new commit.
           # The default GitHub token doesn't trigger any workflows.
@@ -36,6 +36,17 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 2
           submodules: true
+
+      - name: Fetch Rust Toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Install wasm-pack
+        uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: wasm-pack
 
       - run: git lfs pull --include .yarn/
 
