@@ -16,6 +16,7 @@ jobs:
           node-version: [18.x,19.x,20.x,21.x]
     steps:
       - uses: actions/checkout@v4
+      - run: cd tt-wasm && ls -lta && cd ..
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
