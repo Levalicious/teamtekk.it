@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+        - '*'
+
+jobs:
+  test:
+    strategy:
+        matrix:
+          os: [ubuntu-latest, windows-latest]
+          node-version: [18.x, 20.x, 21.x]
+    runs-on: ${{ matrix.os }}
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: wasm-pack
+      - run: yarn install
+      - run: yarn test
